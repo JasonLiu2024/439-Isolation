@@ -1,0 +1,577 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		BE1E50CA1A04367B000BD5C1 /* ReDiLab.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BE1E50C81A04367B000BD5C1 /* ReDiLab.xcdatamodeld */; };
+		BE1E50CD1A0437F8000BD5C1 /* ReactionDiffusionEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1E50CC1A0437F8000BD5C1 /* ReactionDiffusionEntity.swift */; };
+		BE1E51021A052976000BD5C1 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1E51011A052976000BD5C1 /* UIImageExtension.swift */; };
+		BE1E51041A052F9D000BD5C1 /* BrowseAndLoadController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1E51031A052F9D000BD5C1 /* BrowseAndLoadController.swift */; };
+		BE3CC52C1A00BBB70065A637 /* grayScottNoisySquareTwo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BE3CC52B1A00BBB70065A637 /* grayScottNoisySquareTwo.jpg */; };
+		BE97558219F8E8C00003C748 /* noisySquare.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BE97558119F8E8C00003C748 /* noisySquare.jpg */; };
+		BE97558819F901960003C748 /* ReactionDiffusionEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE97558719F901960003C748 /* ReactionDiffusionEditor.swift */; };
+		BE9AA3A319F90A3E006640BF /* ReactionDiffusionImplementations.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9AA3A219F90A3E006640BF /* ReactionDiffusionImplementations.swift */; };
+		BE9AA3A519F92808006640BF /* ParameterWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9AA3A419F92808006640BF /* ParameterWidget.swift */; };
+		BE9AA3A719F950A6006640BF /* ReactionDiffusion.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9AA3A619F950A6006640BF /* ReactionDiffusion.swift */; };
+		BEA8066519F40E75001C1673 /* Async.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA8066419F40E75001C1673 /* Async.swift */; };
+		BEAC770D1A0207A4004FC852 /* ParameterWidgetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAC770C1A0207A4004FC852 /* ParameterWidgetViewController.swift */; };
+		BEB11BB21A20684D00CD5515 /* LaunchScreenBackground.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BEB11BB11A20684D00CD5515 /* LaunchScreenBackground.jpg */; };
+		BEB5F0BE19FB6FEA00517D2B /* grayScottNoisySquare.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BEB5F0BD19FB6FEA00517D2B /* grayScottNoisySquare.jpg */; };
+		BEB5F0C019FBB21B00517D2B /* fhnNoisySquare.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BEB5F0BF19FBB21B00517D2B /* fhnNoisySquare.jpg */; };
+		BEB5F0C219FBBB9500517D2B /* belousovNoisySquare.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BEB5F0C119FBBB9500517D2B /* belousovNoisySquare.jpg */; };
+		BEB634CB19F9664C00B4E24F /* hamburger.png in Resources */ = {isa = PBXBuildFile; fileRef = BEB634CA19F9664C00B4E24F /* hamburger.png */; };
+		BEB6A4F119F21FCD00C158C8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB6A4F019F21FCD00C158C8 /* AppDelegate.swift */; };
+		BEB6A4F319F21FCD00C158C8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB6A4F219F21FCD00C158C8 /* ViewController.swift */; };
+		BEB6A4F619F21FCD00C158C8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BEB6A4F419F21FCD00C158C8 /* Main.storyboard */; };
+		BEB6A4F819F21FCD00C158C8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BEB6A4F719F21FCD00C158C8 /* Images.xcassets */; };
+		BEB6A4FB19F21FCD00C158C8 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = BEB6A4F919F21FCD00C158C8 /* LaunchScreen.xib */; };
+		BEB6A50719F21FCD00C158C8 /* MetalReactionDiffusionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB6A50619F21FCD00C158C8 /* MetalReactionDiffusionTests.swift */; };
+		BEB6A51119F2214900C158C8 /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = BEB6A51019F2214900C158C8 /* Shaders.metal */; };
+		BED542D31A1878520092C272 /* Presets.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED542D21A1878520092C272 /* Presets.swift */; };
+		BEDB3F651A1892B4002CA9DF /* preset.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BEDB3F641A1892B4002CA9DF /* preset.jpg */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		BEB6A50119F21FCD00C158C8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BEB6A4E319F21FCD00C158C8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BEB6A4EA19F21FCD00C158C8;
+			remoteInfo = MetalReactionDiffusion;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		BE1E50C91A04367B000BD5C1 /* ReDiLab.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ReDiLab.xcdatamodel; sourceTree = "<group>"; };
+		BE1E50CC1A0437F8000BD5C1 /* ReactionDiffusionEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactionDiffusionEntity.swift; sourceTree = "<group>"; };
+		BE1E51011A052976000BD5C1 /* UIImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
+		BE1E51031A052F9D000BD5C1 /* BrowseAndLoadController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrowseAndLoadController.swift; sourceTree = "<group>"; };
+		BE3CC52B1A00BBB70065A637 /* grayScottNoisySquareTwo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = grayScottNoisySquareTwo.jpg; sourceTree = "<group>"; };
+		BE97558119F8E8C00003C748 /* noisySquare.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = noisySquare.jpg; sourceTree = "<group>"; };
+		BE97558719F901960003C748 /* ReactionDiffusionEditor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactionDiffusionEditor.swift; sourceTree = "<group>"; };
+		BE9AA3A219F90A3E006640BF /* ReactionDiffusionImplementations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactionDiffusionImplementations.swift; sourceTree = "<group>"; };
+		BE9AA3A419F92808006640BF /* ParameterWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParameterWidget.swift; sourceTree = "<group>"; };
+		BE9AA3A619F950A6006640BF /* ReactionDiffusion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactionDiffusion.swift; sourceTree = "<group>"; };
+		BEA8066419F40E75001C1673 /* Async.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Async.swift; sourceTree = "<group>"; };
+		BEAC770C1A0207A4004FC852 /* ParameterWidgetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParameterWidgetViewController.swift; sourceTree = "<group>"; };
+		BEB11BB11A20684D00CD5515 /* LaunchScreenBackground.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = LaunchScreenBackground.jpg; sourceTree = "<group>"; };
+		BEB5F0BD19FB6FEA00517D2B /* grayScottNoisySquare.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = grayScottNoisySquare.jpg; sourceTree = "<group>"; };
+		BEB5F0BF19FBB21B00517D2B /* fhnNoisySquare.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = fhnNoisySquare.jpg; sourceTree = "<group>"; };
+		BEB5F0C119FBBB9500517D2B /* belousovNoisySquare.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = belousovNoisySquare.jpg; sourceTree = "<group>"; };
+		BEB634CA19F9664C00B4E24F /* hamburger.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hamburger.png; sourceTree = "<group>"; };
+		BEB6A4EB19F21FCD00C158C8 /* ReDiLab.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReDiLab.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BEB6A4EF19F21FCD00C158C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BEB6A4F019F21FCD00C158C8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		BEB6A4F219F21FCD00C158C8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		BEB6A4F519F21FCD00C158C8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		BEB6A4F719F21FCD00C158C8 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		BEB6A4FA19F21FCD00C158C8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		BEB6A50019F21FCD00C158C8 /* MetalReactionDiffusionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MetalReactionDiffusionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BEB6A50519F21FCD00C158C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BEB6A50619F21FCD00C158C8 /* MetalReactionDiffusionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetalReactionDiffusionTests.swift; sourceTree = "<group>"; };
+		BEB6A51019F2214900C158C8 /* Shaders.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
+		BED542D21A1878520092C272 /* Presets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Presets.swift; sourceTree = "<group>"; };
+		BEDB3F641A1892B4002CA9DF /* preset.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = preset.jpg; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BEB6A4E819F21FCD00C158C8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BEB6A4FD19F21FCD00C158C8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		BE1E50CB1A0437D3000BD5C1 /* coreData */ = {
+			isa = PBXGroup;
+			children = (
+				BE1E50CC1A0437F8000BD5C1 /* ReactionDiffusionEntity.swift */,
+				BE1E50C81A04367B000BD5C1 /* ReDiLab.xcdatamodeld */,
+			);
+			name = coreData;
+			sourceTree = "<group>";
+		};
+		BE97558319F8FD8A0003C748 /* async */ = {
+			isa = PBXGroup;
+			children = (
+				BEA8066419F40E75001C1673 /* Async.swift */,
+			);
+			name = async;
+			sourceTree = "<group>";
+		};
+		BE97558419F8FD940003C748 /* assets */ = {
+			isa = PBXGroup;
+			children = (
+				BEB11BB11A20684D00CD5515 /* LaunchScreenBackground.jpg */,
+				BEDB3F641A1892B4002CA9DF /* preset.jpg */,
+				BE3CC52B1A00BBB70065A637 /* grayScottNoisySquareTwo.jpg */,
+				BEB5F0C119FBBB9500517D2B /* belousovNoisySquare.jpg */,
+				BEB5F0BF19FBB21B00517D2B /* fhnNoisySquare.jpg */,
+				BEB5F0BD19FB6FEA00517D2B /* grayScottNoisySquare.jpg */,
+				BEB634CA19F9664C00B4E24F /* hamburger.png */,
+				BE97558119F8E8C00003C748 /* noisySquare.jpg */,
+			);
+			name = assets;
+			sourceTree = "<group>";
+		};
+		BE97558519F8FDA90003C748 /* shaders */ = {
+			isa = PBXGroup;
+			children = (
+				BEB6A51019F2214900C158C8 /* Shaders.metal */,
+			);
+			name = shaders;
+			sourceTree = "<group>";
+		};
+		BE97558619F901430003C748 /* widgets */ = {
+			isa = PBXGroup;
+			children = (
+				BE97558719F901960003C748 /* ReactionDiffusionEditor.swift */,
+				BE9AA3A419F92808006640BF /* ParameterWidget.swift */,
+				BEAC770C1A0207A4004FC852 /* ParameterWidgetViewController.swift */,
+				BE1E51031A052F9D000BD5C1 /* BrowseAndLoadController.swift */,
+			);
+			name = widgets;
+			sourceTree = "<group>";
+		};
+		BE9AA3A119F90A1D006640BF /* reactionDiffusion */ = {
+			isa = PBXGroup;
+			children = (
+				BE9AA3A219F90A3E006640BF /* ReactionDiffusionImplementations.swift */,
+				BE9AA3A619F950A6006640BF /* ReactionDiffusion.swift */,
+				BED542D21A1878520092C272 /* Presets.swift */,
+			);
+			name = reactionDiffusion;
+			sourceTree = "<group>";
+		};
+		BEB6A4E219F21FCD00C158C8 = {
+			isa = PBXGroup;
+			children = (
+				BEB6A4ED19F21FCD00C158C8 /* ReDiLab */,
+				BEB6A50319F21FCD00C158C8 /* MetalReactionDiffusionTests */,
+				BEB6A4EC19F21FCD00C158C8 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		BEB6A4EC19F21FCD00C158C8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BEB6A4EB19F21FCD00C158C8 /* ReDiLab.app */,
+				BEB6A50019F21FCD00C158C8 /* MetalReactionDiffusionTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BEB6A4ED19F21FCD00C158C8 /* ReDiLab */ = {
+			isa = PBXGroup;
+			children = (
+				BE1E50CB1A0437D3000BD5C1 /* coreData */,
+				BE9AA3A119F90A1D006640BF /* reactionDiffusion */,
+				BE97558619F901430003C748 /* widgets */,
+				BE97558519F8FDA90003C748 /* shaders */,
+				BE97558419F8FD940003C748 /* assets */,
+				BE97558319F8FD8A0003C748 /* async */,
+				BEB6A4F019F21FCD00C158C8 /* AppDelegate.swift */,
+				BEB6A4F219F21FCD00C158C8 /* ViewController.swift */,
+				BEB6A4F419F21FCD00C158C8 /* Main.storyboard */,
+				BEB6A4F719F21FCD00C158C8 /* Images.xcassets */,
+				BEB6A4F919F21FCD00C158C8 /* LaunchScreen.xib */,
+				BEB6A4EE19F21FCD00C158C8 /* Supporting Files */,
+				BE1E51011A052976000BD5C1 /* UIImageExtension.swift */,
+			);
+			name = ReDiLab;
+			path = MetalReactionDiffusion;
+			sourceTree = "<group>";
+		};
+		BEB6A4EE19F21FCD00C158C8 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				BEB6A4EF19F21FCD00C158C8 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		BEB6A50319F21FCD00C158C8 /* MetalReactionDiffusionTests */ = {
+			isa = PBXGroup;
+			children = (
+				BEB6A50619F21FCD00C158C8 /* MetalReactionDiffusionTests.swift */,
+				BEB6A50419F21FCD00C158C8 /* Supporting Files */,
+			);
+			path = MetalReactionDiffusionTests;
+			sourceTree = "<group>";
+		};
+		BEB6A50419F21FCD00C158C8 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				BEB6A50519F21FCD00C158C8 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		BEB6A4EA19F21FCD00C158C8 /* MetalReactionDiffusion */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BEB6A50A19F21FCD00C158C8 /* Build configuration list for PBXNativeTarget "MetalReactionDiffusion" */;
+			buildPhases = (
+				BEB6A4E719F21FCD00C158C8 /* Sources */,
+				BEB6A4E819F21FCD00C158C8 /* Frameworks */,
+				BEB6A4E919F21FCD00C158C8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MetalReactionDiffusion;
+			productName = MetalReactionDiffusion;
+			productReference = BEB6A4EB19F21FCD00C158C8 /* ReDiLab.app */;
+			productType = "com.apple.product-type.application";
+		};
+		BEB6A4FF19F21FCD00C158C8 /* MetalReactionDiffusionTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BEB6A50D19F21FCD00C158C8 /* Build configuration list for PBXNativeTarget "MetalReactionDiffusionTests" */;
+			buildPhases = (
+				BEB6A4FC19F21FCD00C158C8 /* Sources */,
+				BEB6A4FD19F21FCD00C158C8 /* Frameworks */,
+				BEB6A4FE19F21FCD00C158C8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BEB6A50219F21FCD00C158C8 /* PBXTargetDependency */,
+			);
+			name = MetalReactionDiffusionTests;
+			productName = MetalReactionDiffusionTests;
+			productReference = BEB6A50019F21FCD00C158C8 /* MetalReactionDiffusionTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BEB6A4E319F21FCD00C158C8 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0600;
+				ORGANIZATIONNAME = "Simon Gladman";
+				TargetAttributes = {
+					BEB6A4EA19F21FCD00C158C8 = {
+						CreatedOnToolsVersion = 6.0;
+						DevelopmentTeam = ZBFYF9JG5V;
+					};
+					BEB6A4FF19F21FCD00C158C8 = {
+						CreatedOnToolsVersion = 6.0;
+						TestTargetID = BEB6A4EA19F21FCD00C158C8;
+					};
+				};
+			};
+			buildConfigurationList = BEB6A4E619F21FCD00C158C8 /* Build configuration list for PBXProject "ReDiLab" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = BEB6A4E219F21FCD00C158C8;
+			productRefGroup = BEB6A4EC19F21FCD00C158C8 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BEB6A4EA19F21FCD00C158C8 /* MetalReactionDiffusion */,
+				BEB6A4FF19F21FCD00C158C8 /* MetalReactionDiffusionTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		BEB6A4E919F21FCD00C158C8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BEB5F0C219FBBB9500517D2B /* belousovNoisySquare.jpg in Resources */,
+				BEB11BB21A20684D00CD5515 /* LaunchScreenBackground.jpg in Resources */,
+				BEB5F0BE19FB6FEA00517D2B /* grayScottNoisySquare.jpg in Resources */,
+				BEDB3F651A1892B4002CA9DF /* preset.jpg in Resources */,
+				BEB6A4F619F21FCD00C158C8 /* Main.storyboard in Resources */,
+				BEB6A4FB19F21FCD00C158C8 /* LaunchScreen.xib in Resources */,
+				BE97558219F8E8C00003C748 /* noisySquare.jpg in Resources */,
+				BEB6A4F819F21FCD00C158C8 /* Images.xcassets in Resources */,
+				BEB634CB19F9664C00B4E24F /* hamburger.png in Resources */,
+				BE3CC52C1A00BBB70065A637 /* grayScottNoisySquareTwo.jpg in Resources */,
+				BEB5F0C019FBB21B00517D2B /* fhnNoisySquare.jpg in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BEB6A4FE19F21FCD00C158C8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BEB6A4E719F21FCD00C158C8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BE1E50CA1A04367B000BD5C1 /* ReDiLab.xcdatamodeld in Sources */,
+				BE9AA3A719F950A6006640BF /* ReactionDiffusion.swift in Sources */,
+				BE1E51041A052F9D000BD5C1 /* BrowseAndLoadController.swift in Sources */,
+				BEA8066519F40E75001C1673 /* Async.swift in Sources */,
+				BEAC770D1A0207A4004FC852 /* ParameterWidgetViewController.swift in Sources */,
+				BE97558819F901960003C748 /* ReactionDiffusionEditor.swift in Sources */,
+				BE9AA3A519F92808006640BF /* ParameterWidget.swift in Sources */,
+				BEB6A51119F2214900C158C8 /* Shaders.metal in Sources */,
+				BE1E50CD1A0437F8000BD5C1 /* ReactionDiffusionEntity.swift in Sources */,
+				BEB6A4F319F21FCD00C158C8 /* ViewController.swift in Sources */,
+				BED542D31A1878520092C272 /* Presets.swift in Sources */,
+				BE9AA3A319F90A3E006640BF /* ReactionDiffusionImplementations.swift in Sources */,
+				BEB6A4F119F21FCD00C158C8 /* AppDelegate.swift in Sources */,
+				BE1E51021A052976000BD5C1 /* UIImageExtension.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BEB6A4FC19F21FCD00C158C8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BEB6A50719F21FCD00C158C8 /* MetalReactionDiffusionTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		BEB6A50219F21FCD00C158C8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BEB6A4EA19F21FCD00C158C8 /* MetalReactionDiffusion */;
+			targetProxy = BEB6A50119F21FCD00C158C8 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		BEB6A4F419F21FCD00C158C8 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BEB6A4F519F21FCD00C158C8 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		BEB6A4F919F21FCD00C158C8 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BEB6A4FA19F21FCD00C158C8 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		BEB6A50819F21FCD00C158C8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Simon Gladman (ZBFYF9JG5V)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		BEB6A50919F21FCD00C158C8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Simon Gladman (ZBFYF9JG5V)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		BEB6A50B19F21FCD00C158C8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = MetalReactionDiffusion/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = ReDiLab;
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		BEB6A50C19F21FCD00C158C8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = MetalReactionDiffusion/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = ReDiLab;
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Release;
+		};
+		BEB6A50E19F21FCD00C158C8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = MetalReactionDiffusionTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		BEB6A50F19F21FCD00C158C8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = MetalReactionDiffusionTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		BEB6A4E619F21FCD00C158C8 /* Build configuration list for PBXProject "ReDiLab" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BEB6A50819F21FCD00C158C8 /* Debug */,
+				BEB6A50919F21FCD00C158C8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BEB6A50A19F21FCD00C158C8 /* Build configuration list for PBXNativeTarget "MetalReactionDiffusion" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BEB6A50B19F21FCD00C158C8 /* Debug */,
+				BEB6A50C19F21FCD00C158C8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BEB6A50D19F21FCD00C158C8 /* Build configuration list for PBXNativeTarget "MetalReactionDiffusionTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BEB6A50E19F21FCD00C158C8 /* Debug */,
+				BEB6A50F19F21FCD00C158C8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		BE1E50C81A04367B000BD5C1 /* ReDiLab.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				BE1E50C91A04367B000BD5C1 /* ReDiLab.xcdatamodel */,
+			);
+			currentVersion = BE1E50C91A04367B000BD5C1 /* ReDiLab.xcdatamodel */;
+			path = ReDiLab.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = BEB6A4E319F21FCD00C158C8 /* Project object */;
+}
