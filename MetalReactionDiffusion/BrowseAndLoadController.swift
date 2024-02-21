@@ -81,11 +81,11 @@ class BrowseAndLoadController: UIViewController, UICollectionViewDataSource, UIC
         collectionViewWidget.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 20, right: 0)
         
         showDeletedSwitch.tintColor = UIColor.darkGray
-        showDeletedSwitch.addTarget(self, action: "showDeletedToggle", for: UIControl.Event.valueChanged)
+        showDeletedSwitch.addTarget(self, action: Selector(("showDeletedToggle")), for: UIControl.Event.valueChanged)
         showDeletedSwitch.setOn(showDeleted, animated: false)
         showDeletedLabel.text = "Show recently deleted"
         
-        let longPress = UILongPressGestureRecognizer(target: self, action: "longPressHandler:")
+        let longPress = UILongPressGestureRecognizer(target: self, action: Selector(("longPressHandler:")))
         collectionViewWidget.addGestureRecognizer(longPress)
         
         view.addSubview(collectionViewWidget)
@@ -137,7 +137,7 @@ class BrowseAndLoadController: UIViewController, UICollectionViewDataSource, UIC
             if showDeleted
             {
                 // if we're displaying peniding deletes....
-                collectionViewWidget.reloadItemsAtIndexPaths([_longPressTarget.indexPath])
+                collectionViewWidget.reloadItems(at: [_longPressTarget.indexPath])
             }
             else
             {
@@ -145,8 +145,8 @@ class BrowseAndLoadController: UIViewController, UICollectionViewDataSource, UIC
                 if targetEntity.pendingDelete
                 {
                     let targetEntityIndex = find(dataprovider, targetEntity)
-                    dataprovider.removeAtIndex(targetEntityIndex!)
-                    collectionViewWidget.deleteItemsAtIndexPaths([_longPressTarget.indexPath])
+                    dataprovider.remove(at: targetEntityIndex!)
+                    collectionViewWidget.deleteItems(at: [_longPressTarget.indexPath])
                 }
             }
         }
@@ -154,10 +154,10 @@ class BrowseAndLoadController: UIViewController, UICollectionViewDataSource, UIC
     
     func collectionView(collectionView: UICollectionView, didHighlightItemAtIndexPath indexPath: NSIndexPath)
     {
-        longPressTarget = (cell: self.collectionView(collectionViewWidget, cellForItemAtIndexPath: indexPath), indexPath: indexPath)
+        longPressTarget = (cell: self.collectionView(collectionView: collectionViewWidget, cellForItemAtIndexPath: indexPath), indexPath: indexPath)
     }
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
         return dataprovider.count
     }
@@ -180,7 +180,7 @@ class BrowseAndLoadController: UIViewController, UICollectionViewDataSource, UIC
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell
     {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! ReactionDiffusionEntityRenderer
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath as IndexPath) as! ReactionDiffusionEntityRenderer
         
         cell.reactionDiffusionEntity = dataprovider[indexPath.item]
         
@@ -221,7 +221,7 @@ class ReactionDiffusionEntityRenderer: UICollectionViewCell
         label.adjustsFontSizeToFitWidth = true
         label.textAlignment = NSTextAlignment.center
 
-        imageView.frame = bounds.rectByInsetting(dx: 0, dy: 0)
+        imageView.frame = bounds.insetBy(dx: 0, dy: 0)
         
         blurOverlay.frame = CGRect(x: 0, y: frame.height - 20, width: frame.width, height: 20)
         
@@ -249,7 +249,7 @@ class ReactionDiffusionEntityRenderer: UICollectionViewCell
 
                 label.text = _reactionDiffusionEntity.model
             
-                let thumbnail = UIImage(data: _reactionDiffusionEntity.imageData as NSData)
+                let thumbnail = UIImage(data: (_reactionDiffusionEntity.imageData as NSData) as Data)
             
                 imageView.image = thumbnail
             }

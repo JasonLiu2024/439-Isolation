@@ -78,13 +78,13 @@ class ViewController: UIViewController, UIPopoverControllerDelegate
     
     required init(coder aDecoder: NSCoder)
     {
-        appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        appDelegate = UIApplication.shared.delegate as! AppDelegate
         managedObjectContext = appDelegate.managedObjectContext!
         
         browseAndLoadController = BrowseAndLoadController()
         popoverController = UIPopoverController(contentViewController: browseAndLoadController)
         
-        super.init(coder: aDecoder)
+        super.init(coder: aDecoder)!
 
         browseAndLoadController.preferredContentSize = CGSize(width: 640, height: 480)
 
@@ -109,11 +109,11 @@ class ViewController: UIViewController, UIPopoverControllerDelegate
         UIView.animate(withDuration: 0.5, delay: 0.25, options: UIView.AnimationOptions.CurveEaseInOut, animations: {self.imageView.alpha = 1.0; self.editor.alpha = 1.0}, completion: nil)
         
         editor.reactionDiffusionModel = reactionDiffusionModel
-        editor.addTarget(self, action: "editorChangeHandler:", for: UIControl.Event.valueChanged)
-        editor.addTarget(self, action: "resetSimulationHandler", for: UIControl.Event.ResetSimulation)
-        editor.addTarget(self, action: "modelChangedHandler:", for: UIControl.Event.ModelChanged)
-        editor.addTarget(self, action: "saveModel", for: UIControl.Event.SaveModel)
-        editor.addTarget(self, action: "loadModel", for: UIControl.Event.LoadModel)
+        editor.addTarget(self, action: Selector(("editorChangeHandler:")), for: UIControl.Event.valueChanged)
+        editor.addTarget(self, action: Selector(("resetSimulationHandler")), for: UIControl.Event.ResetSimulation)
+        editor.addTarget(self, action: Selector(("modelChangedHandler:")), for: UIControl.Event.ModelChanged)
+        editor.addTarget(self, action: Selector(("saveModel")), for: UIControl.Event.SaveModel)
+        editor.addTarget(self, action: Selector(("loadModel")), for: UIControl.Event.LoadModel)
         
         setUpMetal()
     }
@@ -138,14 +138,14 @@ class ViewController: UIViewController, UIPopoverControllerDelegate
     
     func saveModel()
     {
-        var newEntity = ReactionDiffusionEntity.createInManagedObjectContext(managedObjectContext, model: reactionDiffusionModel.model.rawValue, reactionDiffusionStruct: reactionDiffusionModel.reactionDiffusionStruct, image: self.imageView.image!)
+        var newEntity = ReactionDiffusionEntity.createInManagedObjectContext(moc: managedObjectContext, model: reactionDiffusionModel.model.rawValue, reactionDiffusionStruct: reactionDiffusionModel.reactionDiffusionStruct, image: self.imageView.image!)
         
        appDelegate.saveContext()
     }
     
     func loadModel()
     {
-        let fetchRequest = NSFetchRequest(entityName: "ReactionDiffusionEntity")
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "ReactionDiffusionEntity")
         
         if let fetchResults = managedObjectContext.executeFetchRequest(fetchRequest, error: nil) as? [ReactionDiffusionEntity]
         {
@@ -156,11 +156,11 @@ class ViewController: UIViewController, UIPopoverControllerDelegate
         }
     }
     
-    func popoverControllerDidDismissPopover(popoverController: UIPopoverController)
+    func popoverControllerDidDismissPopover(_ popoverController: UIPopoverController)
     {
         if let _selectedEntity = browseAndLoadController.selectedEntity
         {
-            reactionDiffusionModel = ReactionDiffusionEntity.createInstanceFromEntity(_selectedEntity)
+            reactionDiffusionModel = ReactionDiffusionEntity.createInstanceFromEntity(entity: _selectedEntity)
         }
     }
 
@@ -218,7 +218,7 @@ class ViewController: UIViewController, UIPopoverControllerDelegate
                     self.editor.reactionDiffusionModel = self.reactionDiffusionModel
                     
                     let kernelFunction = self.defaultLibrary.newFunctionWithName(self.reactionDiffusionModel.shaderName)
-                    self.pipelineState = self.device.newComputePipelineStateWithFunction(kernelFunction!, error: nil)
+                    self.pipelineState = self.device.newComputePipelineStateWithFunction(kernelFunction!, completionHandler: nil)
                     
                     self.resetSimulationFlag = true
                 }
@@ -283,12 +283,12 @@ class ViewController: UIViewController, UIPopoverControllerDelegate
     final func applyFilter() -> UIImage
     {
         let commandBuffer = commandQueue.makeCommandBuffer()
-        let commandEncoder = commandBuffer.computeCommandEncoder()
+        let commandEncoder = commandBuffer?.makeComputeCommandEncoder()
         
-        commandEncoder.setComputePipelineState(pipelineState)
+        commandEncoder?.setComputePipelineState(pipelineState)
         
-        var buffer: MTLBuffer = device.newBufferWithBytes(&reactionDiffusionModel.reactionDiffusionStruct, length: sizeof(ReactionDiffusionParameters), options: nil)
-        commandEncoder.setBuffer(buffer, offset: 0, atIndex: 0)
+        var buffer: MTLBuffer = device.newBufferWithBytes(&reactionDiffusionModel.reactionDiffusionStruct, length: sizeof(ReactionDiffusionParameters), options: nil)!
+        commandEncoder?.setBuffer(buffer, offset: 0, index: 0)
         
         commandQueue = device.makeCommandQueue()
         
@@ -296,23 +296,23 @@ class ViewController: UIViewController, UIPopoverControllerDelegate
         {
             if useTextureAForInput
             {
-                commandEncoder.setTexture(textureA, atIndex: 0)
-                commandEncoder.setTexture(textureB, atIndex: 1)
+                commandEncoder?.setTexture(textureA, index: 0)
+                commandEncoder?.setTexture(textureB, index: 1)
             }
             else
             {
-                commandEncoder.setTexture(textureB, atIndex: 0)
-                commandEncoder.setTexture(textureA, atIndex: 1)
+                commandEncoder?.setTexture(textureB, index: 0)
+                commandEncoder?.setTexture(textureA, index: 1)
             }
 
-            commandEncoder.dispatchThreadgroups(threadGroups, threadsPerThreadgroup: threadGroupCount)
+            commandEncoder?.dispatchThreadgroups(threadGroups, threadsPerThreadgroup: threadGroupCount)
 
             useTextureAForInput = !useTextureAForInput
         }
         
-        commandEncoder.endEncoding()
-        commandBuffer.commit()
-        commandBuffer.waitUntilCompleted()
+        commandEncoder?.endEncoding()
+        commandBuffer?.commit()
+        commandBuffer?.waitUntilCompleted()
   
         if !useTextureAForInput
         {
@@ -327,7 +327,7 @@ class ViewController: UIViewController, UIPopoverControllerDelegate
        
         let imageRef = CGImageCreate(Int(imageSize.width), Int(imageSize.height), bitsPerComponent, bitsPerPixel, bytesPerRow, rgbColorSpace, bitmapInfo, providerRef, nil, false, renderingIntent)
 
-        return UIImage(CGImage: imageRef)!
+        return UIImage(CGImage: imageRef)
     }
 
     

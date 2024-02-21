@@ -44,11 +44,11 @@ class ParameterWidget: UIControl, UIPopoverControllerDelegate
         addSubview(label)
         addSubview(slider)
         
-        slider.addTarget(self, action: "sliderChangeHandler", for: UIControl.Event.valueChanged)
-        parameterWidgetViewController.slider.addTarget(self, action: "bigSliderChangeHandler", for: UIControl.Event.valueChanged)
-        parameterWidgetViewController.slider.addTarget(self, action: "bigSliderTouchUpInsideHandler", for: UIControl.Event.touchUpInside)
+        slider.addTarget(self, action: Selector(("sliderChangeHandler")), for: UIControl.Event.valueChanged)
+        parameterWidgetViewController.slider.addTarget(self, action: Selector(("bigSliderChangeHandler")), for: UIControl.Event.valueChanged)
+        parameterWidgetViewController.slider.addTarget(self, action: Selector(("bigSliderTouchUpInsideHandler")), for: UIControl.Event.touchUpInside)
 
-        let longPress = UILongPressGestureRecognizer(target: self, action: "longHoldHandler:")
+        let longPress = UILongPressGestureRecognizer(target: self, action: Selector(("longHoldHandler:")))
         longPress.minimumPressDuration = 0.75
         longPress.allowableMovement = 7.5
         addGestureRecognizer(longPress)

@@ -18,11 +18,11 @@ class ReactionDiffusionEditor: UIControl
 
     override func didMoveToSuperview()
     {
-        let resetSimulationButton = UIBarButtonItem(title: "Reset Sim", style: UIBarButtonItem.Style.plain, target: self, action: "resetSimulation")
+        let resetSimulationButton = UIBarButtonItem(title: "Reset Sim", style: UIBarButtonItem.Style.plain, target: self, action: Selector(("resetSimulation")))
         
         let spacer = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
         
-        let resetParametersButton = UIBarButtonItem(title: "Reset Params", style: UIBarButtonItem.Style.plain, target: self, action: "resetParameters")
+        let resetParametersButton = UIBarButtonItem(title: "Reset Params", style: UIBarButtonItem.Style.plain, target: self, action: Selector(("resetParameters")))
         
         toolbar.items = [resetSimulationButton, spacer, resetParametersButton]
         
@@ -36,9 +36,9 @@ class ReactionDiffusionEditor: UIControl
         
         menuButton.showsTouchWhenHighlighted = true
         menuButton.imageView?.contentMode = UIView.ContentMode.scaleAspectFit
-        menuButton.setImage(UIImage(named: "hamburger.png"), for: UIControl.State.Normal)
+        menuButton.setImage(UIImage(named: "hamburger.png"), for: UIControl.State.normal)
 
-        menuButton.addTarget(self, action: "displayCallout", for: UIControl.Event.touchDown)
+        menuButton.addTarget(self, action: Selector(("displayCallout")), for: UIControl.Event.touchDown)
         
         addSubview(menuButton)
         
@@ -101,7 +101,7 @@ class ReactionDiffusionEditor: UIControl
 
     func reactionDiffusionModelChangeHandler(value: UIAlertAction!) -> Void
     {
-        requestedReactionDiffusionModel = ReactionDiffusionModels(rawValue: value.title)
+        requestedReactionDiffusionModel = ReactionDiffusionModels(rawValue: value.title ?? "No title present")
         
         sendActions(for: UIControl.Event.ModelChanged)
     }
@@ -149,7 +149,7 @@ class ReactionDiffusionEditor: UIControl
         
         for widget in parameterWidgets
         {
-            widget.value = reactionDiffusionModel.getValueForFieldName(widget.reactionDiffusionFieldName!)
+            widget.value = reactionDiffusionModel.getValueForFieldName(fieldName: widget.reactionDiffusionFieldName!)
         }
         
         sendActions(for: UIControl.Event.valueChanged)
@@ -175,14 +175,14 @@ class ReactionDiffusionEditor: UIControl
             
             parameterWidgets.append(widget)
             
-            widget.minimumValue = reactionDiffusionModel.getMinMaxForFieldName(fieldName).min
-            widget.maximumValue = reactionDiffusionModel.getMinMaxForFieldName(fieldName).max
+            widget.minimumValue = reactionDiffusionModel.getMinMaxForFieldName(fieldName: fieldName).min
+            widget.maximumValue = reactionDiffusionModel.getMinMaxForFieldName(fieldName: fieldName).max
       
-            widget.value = reactionDiffusionModel.getValueForFieldName(fieldName)
+            widget.value = reactionDiffusionModel.getValueForFieldName(fieldName: fieldName)
             widget.reactionDiffusionFieldName = fieldName
             
-            widget.addTarget(self, action: "widgetChangeHandler:", for: UIControl.Event.valueChanged)
-            widget.addTarget(self, action: "resetSimulation", for: UIControl.Event.ResetSimulation)
+            widget.addTarget(self, action: Selector(("widgetChangeHandler:")), for: UIControl.Event.valueChanged)
+            widget.addTarget(self, action: Selector(("resetSimulation")), for: UIControl.Event.ResetSimulation)
  
             addSubview(widget)
         }
@@ -194,7 +194,7 @@ class ReactionDiffusionEditor: UIControl
     {
         if let fieldName = widget.reactionDiffusionFieldName
         {
-            reactionDiffusionModel.setValueForFieldName(fieldName, value: widget.value)
+            reactionDiffusionModel.setValueForFieldName(fieldName: fieldName, value: widget.value)
             
             sendActions(for: UIControl.Event.valueChanged)
         }

@@ -22,7 +22,7 @@ extension UIImage
         
         self.drawInRect(CGRect(x: 0, y: 0, width: newWidth, height: newHeight))
         
-        let resizedImage = UIGraphicsGetImageFromCurrentImageContext()
+        guard let resizedImage = UIGraphicsGetImageFromCurrentImageContext() else { return <#default value#> }
         
         UIGraphicsEndImageContext();
         

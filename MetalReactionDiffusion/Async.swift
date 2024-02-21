@@ -45,19 +45,19 @@ private class GCD {
         // Could use return dispatch_get_global_queue(qos_class_main().id, 0)
     }
     class func userInteractiveQueue() -> dispatch_queue_t {
-        return dispatch_get_global_queue(QOS_CLASS_USER_INTERACTIVE.id, 0)
+        return DispatchQueue.global(QOS_CLASS_USER_INTERACTIVE.id, 0)
     }
     class func userInitiatedQueue() -> dispatch_queue_t {
-        return dispatch_get_global_queue(QOS_CLASS_USER_INITIATED.id, 0)
+        return DispatchQueue.global(QOS_CLASS_USER_INITIATED.id, 0)
     }
     class func defaultQueue() -> dispatch_queue_t {
-        return dispatch_get_global_queue(QOS_CLASS_DEFAULT.id, 0)
+        return DispatchQueue.global(QOS_CLASS_DEFAULT.id, 0)
     }
     class func utilityQueue() -> dispatch_queue_t {
-        return dispatch_get_global_queue(QOS_CLASS_UTILITY.id, 0)
+        return DispatchQueue.global(QOS_CLASS_UTILITY.id, 0)
     }
     class func backgroundQueue() -> dispatch_queue_t {
-        return dispatch_get_global_queue(QOS_CLASS_BACKGROUND.id, 0)
+        return DispatchQueue.global(QOS_CLASS_BACKGROUND.id, 0)
     }
 }
 
@@ -66,7 +66,7 @@ public struct Async {
     
     private let block: dispatch_block_t
     
-    private init(_ block: dispatch_block_t) {
+    private init(_ block: @escaping dispatch_block_t) {
         self.block = block
     }
 }
@@ -86,62 +86,62 @@ extension Async { // Static methods
         // Wrap block in a struct since dispatch_block_t can't be extended
         return Async(_block)
     }
-    static func main(block: dispatch_block_t) -> Async {
-        return Async.async(block, inQueue: GCD.mainQueue())
+    static func main(block: @escaping dispatch_block_t) -> Async {
+        return Async.async(block: block, inQueue: GCD.mainQueue())
     }
-    static func userInteractive(block: dispatch_block_t) -> Async {
-        return Async.async(block, inQueue: GCD.userInteractiveQueue())
+    static func userInteractive(block: @escaping dispatch_block_t) -> Async {
+        return Async.async(block: block, inQueue: GCD.userInteractiveQueue())
     }
-    static func userInitiated(block: dispatch_block_t) -> Async {
-        return Async.async(block, inQueue: GCD.userInitiatedQueue())
+    static func userInitiated(block: @escaping dispatch_block_t) -> Async {
+        return Async.async(block: block, inQueue: GCD.userInitiatedQueue())
     }
-    static func default_(block: dispatch_block_t) -> Async {
-        return Async.async(block, inQueue: GCD.defaultQueue())
+    static func default_(block: @escaping dispatch_block_t) -> Async {
+        return Async.async(block: block, inQueue: GCD.defaultQueue())
     }
-    static func utility(block: dispatch_block_t) -> Async {
-        return Async.async(block, inQueue: GCD.utilityQueue())
+    static func utility(block: @escaping dispatch_block_t) -> Async {
+        return Async.async(block: block, inQueue: GCD.utilityQueue())
     }
-    static func background(block: dispatch_block_t) -> Async {
-        return Async.async(block, inQueue: GCD.backgroundQueue())
+    static func background(block: @escaping dispatch_block_t) -> Async {
+        return Async.async(block: block, inQueue: GCD.backgroundQueue())
     }
-    static func customQueue(queue: dispatch_queue_t, block: dispatch_block_t) -> Async {
-        return Async.async(block, inQueue: queue)
+    static func customQueue(queue: dispatch_queue_t, block: @escaping dispatch_block_t) -> Async {
+        return Async.async(block: block, inQueue: queue)
     }
     
     
     /* dispatch_after() */
     
-    private static func after(seconds: Double, block: dispatch_block_t, inQueue queue: dispatch_queue_t) -> Async {
+    private static func after(seconds: Double, block: @escaping dispatch_block_t, inQueue queue: dispatch_queue_t) -> Async {
         let nanoSeconds = Int64(seconds * Double(NSEC_PER_SEC))
-        let time = dispatch_time(DISPATCH_TIME_NOW, nanoSeconds)
-        return at(time, block: block, inQueue: queue)
+        let time = DispatchTime.now
+        return at(time: time, block: block, inQueue: queue)
     }
-    private static func at(time: dispatch_time_t, block: dispatch_block_t, inQueue queue: dispatch_queue_t) -> Async {
+    private static func at(time: dispatch_time_t, block: @escaping dispatch_block_t, inQueue queue: dispatch_queue_t) -> Async {
         // See Async.async() for comments
         let _block = dispatch_block_create(DISPATCH_BLOCK_INHERIT_QOS_CLASS, block)
         dispatch_after(time, queue, _block)
         return Async(_block)
     }
-    static func main(#after: Double, block: dispatch_block_t) -> Async {
-        return Async.after(after, block: block, inQueue: GCD.mainQueue())
+    static func main(#after: Double, block: @escaping dispatch_block_t) -> Async {
+        return Async.after(seconds: after, block: block, inQueue: GCD.mainQueue())
     }
-    static func userInteractive(#after: Double, block: dispatch_block_t) -> Async {
-        return Async.after(after, block: block, inQueue: GCD.userInteractiveQueue())
+    static func userInteractive(#after: Double, block: @escaping dispatch_block_t) -> Async {
+        return Async.after(seconds: after, block: block, inQueue: GCD.userInteractiveQueue())
     }
-    static func userInitiated(#after: Double, block: dispatch_block_t) -> Async {
-        return Async.after(after, block: block, inQueue: GCD.userInitiatedQueue())
+    static func userInitiated(#after: Double, block: @escaping dispatch_block_t) -> Async {
+        return Async.after(seconds: after, block: block, inQueue: GCD.userInitiatedQueue())
     }
-    static func default_(#after: Double, block: dispatch_block_t) -> Async {
-        return Async.after(after, block: block, inQueue: GCD.defaultQueue())
+    static func default_(#after: Double, block: @escaping dispatch_block_t) -> Async {
+        return Async.after(seconds: after, block: block, inQueue: GCD.defaultQueue())
     }
-    static func utility(#after: Double, block: dispatch_block_t) -> Async {
-        return Async.after(after, block: block, inQueue: GCD.utilityQueue())
+    static func utility(#after: Double, block: @escaping dispatch_block_t) -> Async {
+        return Async.after(seconds: after, block: block, inQueue: GCD.utilityQueue())
     }
-    static func background(#after: Double, block: dispatch_block_t) -> Async {
-        return Async.after(after, block: block, inQueue: GCD.backgroundQueue())
+    static func background(#after: Double, block: @escaping dispatch_block_t) -> Async {
+        return Async.after(seconds: after, block: block, inQueue: GCD.backgroundQueue())
     }
-    static func customQueue(#after: Double, queue: dispatch_queue_t, block: dispatch_block_t) -> Async {
-        return Async.after(after, block: block, inQueue: queue)
+    static func customQueue(#after: Double, queue: dispatch_queue_t, block: @escaping dispatch_block_t) -> Async {
+        return Async.after(seconds: after, block: block, inQueue: queue)
     }
 }
 
@@ -151,39 +151,39 @@ extension Async { // Regualar methods matching static once
     
     /* dispatch_async() */
     
-    private func chain(block chainingBlock: dispatch_block_t, runInQueue queue: dispatch_queue_t) -> Async {
+    private func chain(block chainingBlock: @escaping dispatch_block_t, runInQueue queue: dispatch_queue_t) -> Async {
         // See Async.async() for comments
         let _chainingBlock = dispatch_block_create(DISPATCH_BLOCK_INHERIT_QOS_CLASS, chainingBlock)
         dispatch_block_notify(self.block, queue, _chainingBlock)
         return Async(_chainingBlock)
     }
     
-    func main(chainingBlock: dispatch_block_t) -> Async {
+    func main(chainingBlock: @escaping dispatch_block_t) -> Async {
         return chain(block: chainingBlock, runInQueue: GCD.mainQueue())
     }
-    func userInteractive(chainingBlock: dispatch_block_t) -> Async {
+    func userInteractive(chainingBlock: @escaping dispatch_block_t) -> Async {
         return chain(block: chainingBlock, runInQueue: GCD.userInteractiveQueue())
     }
-    func userInitiated(chainingBlock: dispatch_block_t) -> Async {
+    func userInitiated(chainingBlock: @escaping dispatch_block_t) -> Async {
         return chain(block: chainingBlock, runInQueue: GCD.userInitiatedQueue())
     }
-    func default_(chainingBlock: dispatch_block_t) -> Async {
+    func default_(chainingBlock: @escaping dispatch_block_t) -> Async {
         return chain(block: chainingBlock, runInQueue: GCD.defaultQueue())
     }
-    func utility(chainingBlock: dispatch_block_t) -> Async {
+    func utility(chainingBlock: @escaping dispatch_block_t) -> Async {
         return chain(block: chainingBlock, runInQueue: GCD.utilityQueue())
     }
-    func background(chainingBlock: dispatch_block_t) -> Async {
+    func background(chainingBlock: @escaping dispatch_block_t) -> Async {
         return chain(block: chainingBlock, runInQueue: GCD.backgroundQueue())
     }
-    func customQueue(queue: dispatch_queue_t, chainingBlock: dispatch_block_t) -> Async {
+    func customQueue(queue: dispatch_queue_t, chainingBlock: @escaping dispatch_block_t) -> Async {
         return chain(block: chainingBlock, runInQueue: queue)
     }
     
     
     /* dispatch_after() */
     
-    private func after(seconds: Double, block chainingBlock: dispatch_block_t, runInQueue queue: dispatch_queue_t) -> Async {
+    private func after(seconds: Double, block chainingBlock: @escaping dispatch_block_t, runInQueue queue: dispatch_queue_t) -> Async {
         
         // Create a new block (Qos Class) from block to allow adding a notification to it later (see Async)
         // Create block with the "inherit" type
@@ -193,7 +193,7 @@ extension Async { // Regualar methods matching static once
         let chainingWrapperBlock: dispatch_block_t = {
             // Calculate time from now
             let nanoSeconds = Int64(seconds * Double(NSEC_PER_SEC))
-            let time = dispatch_time(DISPATCH_TIME_NOW, nanoSeconds)
+            let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), nanoSeconds)
             dispatch_after(time, queue, _chainingBlock)
         }
         // Create a new block (Qos Class) from block to allow adding a notification to it later (see Async)
@@ -204,26 +204,26 @@ extension Async { // Regualar methods matching static once
         // Wrap block in a struct since dispatch_block_t can't be extended
         return Async(_chainingBlock)
     }
-    func main(#after: Double, block: dispatch_block_t) -> Async {
-        return self.after(after, block: block, runInQueue: GCD.mainQueue())
+    func main(#after: Double, block: @escaping dispatch_block_t) -> Async {
+        return self.after(seconds: after, block: block, runInQueue: GCD.mainQueue())
     }
-    func userInteractive(#after: Double, block: dispatch_block_t) -> Async {
-        return self.after(after, block: block, runInQueue: GCD.userInteractiveQueue())
+    func userInteractive(#after: Double, block: @escaping dispatch_block_t) -> Async {
+        return self.after(seconds: after, block: block, runInQueue: GCD.userInteractiveQueue())
     }
-    func userInitiated(#after: Double, block: dispatch_block_t) -> Async {
-        return self.after(after, block: block, runInQueue: GCD.userInitiatedQueue())
+    func userInitiated(#after: Double, block: @escaping dispatch_block_t) -> Async {
+        return self.after(seconds: after, block: block, runInQueue: GCD.userInitiatedQueue())
     }
-    func default_(#after: Double, block: dispatch_block_t) -> Async {
-        return self.after(after, block: block, runInQueue: GCD.defaultQueue())
+    func default_(#after: Double, block: @escaping dispatch_block_t) -> Async {
+        return self.after(seconds: after, block: block, runInQueue: GCD.defaultQueue())
     }
-    func utility(#after: Double, block: dispatch_block_t) -> Async {
-        return self.after(after, block: block, runInQueue: GCD.utilityQueue())
+    func utility(#after: Double, block: @escaping dispatch_block_t) -> Async {
+        return self.after(seconds: after, block: block, runInQueue: GCD.utilityQueue())
     }
-    func background(#after: Double, block: dispatch_block_t) -> Async {
-        return self.after(after, block: block, runInQueue: GCD.backgroundQueue())
+    func background(#after: Double, block: @escaping dispatch_block_t) -> Async {
+        return self.after(seconds: after, block: block, runInQueue: GCD.backgroundQueue())
     }
-    func customQueue(#after: Double, queue: dispatch_queue_t, block: dispatch_block_t) -> Async {
-        return self.after(after, block: block, runInQueue: queue)
+    func customQueue(#after: Double, queue: dispatch_queue_t, block: @escaping dispatch_block_t) -> Async {
+        return self.after(seconds: after, block: block, runInQueue: queue)
     }
     
     
@@ -240,10 +240,10 @@ extension Async { // Regualar methods matching static once
     func wait(seconds: Double = 0.0) {
         if seconds != 0.0 {
             let nanoSeconds = Int64(seconds * Double(NSEC_PER_SEC))
-            let time = dispatch_time(DISPATCH_TIME_NOW, nanoSeconds)
+            let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), nanoSeconds)
             dispatch_block_wait(block, time)
         } else {
-            dispatch_block_wait(block, DISPATCH_TIME_FOREVER)
+            dispatch_block_wait(block, dispatch_time_t(DISPATCH_TIME_FOREVER))
         }
     }
 }
