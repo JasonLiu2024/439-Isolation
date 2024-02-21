@@ -10,6 +10,10 @@ import UIKit
 
 class BrowseAndLoadController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate
 {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        <#code#>
+    }
+    
     var collectionViewWidget: UICollectionView!
     var selectedEntity: ReactionDiffusionEntity?
     let blurOverlay = UIVisualEffectView(effect: UIBlurEffect())
@@ -117,7 +121,7 @@ class BrowseAndLoadController: UIViewController, UICollectionViewDataSource, UIC
                 if let popoverPresentationController = contextMenuController.popoverPresentationController
                 {
                     popoverPresentationController.permittedArrowDirections = UIPopoverArrowDirection.down
-                    popoverPresentationController.sourceRect = _longPressTarget.cell.frame.rectByOffsetting(dx: collectionViewWidget.frame.origin.x, dy: collectionViewWidget.frame.origin.y - collectionViewWidget.contentOffset.y)
+                    popoverPresentationController.sourceRect = _longPressTarget.cell.frame.offsetBy(dx: collectionViewWidget.frame.origin.x, dy: collectionViewWidget.frame.origin.y - collectionViewWidget.contentOffset.y)
                     popoverPresentationController.sourceView = view
                     
                     present(contextMenuController, animated: true, completion: nil)
@@ -144,7 +148,11 @@ class BrowseAndLoadController: UIViewController, UICollectionViewDataSource, UIC
                 // if we're deleting
                 if targetEntity.pendingDelete
                 {
-                    let targetEntityIndex = find(dataprovider, targetEntity)
+                    if #available(iOS 16.0, *) {
+                        let targetEntityIndex = find(dataprovider)
+                    } else {
+                        // Fallback on earlier versions
+                    }
                     dataprovider.remove(at: targetEntityIndex!)
                     collectionViewWidget.deleteItems(at: [_longPressTarget.indexPath])
                 }
@@ -152,7 +160,7 @@ class BrowseAndLoadController: UIViewController, UICollectionViewDataSource, UIC
         }
     }
     
-    func collectionView(collectionView: UICollectionView, didHighlightItemAtIndexPath indexPath: NSIndexPath)
+    private func collectionView(collectionView: UICollectionView, didHighlightItemAtIndexPath indexPath: NSIndexPath)
     {
         longPressTarget = (cell: self.collectionView(collectionView: collectionViewWidget, cellForItemAtIndexPath: indexPath), indexPath: indexPath)
     }
@@ -162,7 +170,7 @@ class BrowseAndLoadController: UIViewController, UICollectionViewDataSource, UIC
         return dataprovider.count
     }
     
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath)
+    private func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath)
     {
         selectedEntity = dataprovider[indexPath.item]
  
@@ -178,7 +186,7 @@ class BrowseAndLoadController: UIViewController, UICollectionViewDataSource, UIC
         
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell
+    private func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell
     {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath as IndexPath) as! ReactionDiffusionEntityRenderer
         
@@ -189,14 +197,14 @@ class BrowseAndLoadController: UIViewController, UICollectionViewDataSource, UIC
     
     override func viewDidLayoutSubviews()
     {
-        collectionViewWidget.frame = view.bounds.rectByInsetting(dx: 10, dy: 10)
+        collectionViewWidget.frame = view.bounds.insetBy(dx: 10, dy: 10)
         
         blurOverlay.frame = CGRect(x: 0, y: view.frame.height - 40, width: view.frame.width, height: 40)
 
         let showDeletedOffset = (40.0 - showDeletedSwitch.frame.height) / 2
-        showDeletedSwitch.frame = blurOverlay.frame.rectByInsetting(dx: showDeletedOffset, dy: showDeletedOffset)
+        showDeletedSwitch.frame = blurOverlay.frame.insetBy(dx: showDeletedOffset, dy: showDeletedOffset)
         
-        showDeletedLabel.frame = blurOverlay.frame.rectByInsetting(dx: showDeletedSwitch.frame.width + showDeletedOffset + 5, dy: 0)
+        showDeletedLabel.frame = blurOverlay.frame.insetBy(dx: showDeletedSwitch.frame.width + showDeletedOffset + 5, dy: 0)
         
         collectionViewWidget.reloadData()
     }

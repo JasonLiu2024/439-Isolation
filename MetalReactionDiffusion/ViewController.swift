@@ -167,7 +167,7 @@ class ViewController: UIViewController, UIPopoverControllerDelegate
     func setUpMetal()
     {
         device = MTLCreateSystemDefaultDevice()
-        println("device = \(device)")
+        print("device = \(String(describing: device))")
         if device == nil
         {
             errorFlag = true
@@ -177,7 +177,7 @@ class ViewController: UIViewController, UIPopoverControllerDelegate
             defaultLibrary = device.makeDefaultLibrary()
             commandQueue = device.makeCommandQueue()
             let kernelFunction = defaultLibrary.makeFunction(name: reactionDiffusionModel.shaderName)
-            pipelineState = device.newComputePipelineStateWithFunction(kernelFunction!, error: nil)
+            pipelineState = device.newComputePipelineStateWithFunction(kernelFunction!, completionHandler: nil)
             setUpTexture()
             run()
         }

@@ -206,7 +206,7 @@ class ReactionDiffusionEditor: UIControl
 
         toolbar.frame = CGRect(x: 0, y: frame.height - 40, width: frame.width, height: 40)
         
-        for (idx: Int, widget: ParameterWidget) in enumerate(parameterWidgets)
+        for (idx: Int, widget: ParameterWidget) in parameterWidgets.enumerated()
         {
             widget.frame = CGRect(x: 10, y: 60 + idx * 80, width: Int(frame.width - 20), height: 55)
         }
