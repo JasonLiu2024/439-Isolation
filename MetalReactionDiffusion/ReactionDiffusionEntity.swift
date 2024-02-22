@@ -50,13 +50,13 @@ class ReactionDiffusionEntity: NSManagedObject {
         
         newItem.model = model
         
-        newItem.imageData = UIImageJPEGRepresentation(image.resizeToBoundingSquare(boundingSquareSideLength: 160.0), 0.75)
+        newItem.imageData = image.resizeToBoundingSquare().jpegData(compressionQuality: 100)! as NSData
  
-        newItem.f = reactionDiffusionStruct.F
-        newItem.k = reactionDiffusionStruct.K
-        newItem.du = reactionDiffusionStruct.Du
-        newItem.dv = reactionDiffusionStruct.Dv
-        newItem.autoSaved = autoSaved
+        newItem.f = reactionDiffusionStruct.F as NSNumber
+        newItem.k = reactionDiffusionStruct.K as NSNumber
+        newItem.du = reactionDiffusionStruct.Du as NSNumber
+        newItem.dv = reactionDiffusionStruct.Dv as NSNumber
+        newItem.autoSaved = autoSaved as NSNumber
         
         return newItem
     }

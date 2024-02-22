@@ -32,7 +32,7 @@ class ViewController: UIViewController, UIPopoverControllerDelegate
     let rgbColorSpace = CGColorSpaceCreateDeviceRGB()
      
     let bytesPerRow = Int(4 * 640)
-    let providerLength = Int(640 * 640 * 4) * sizeof(UInt8)
+    let providerLength = Int(640 * 640 * 4) * size(Int)
     var imageBytes = [UInt8](count: Int(640 * 640 * 4), repeatedValue: 0)
     
     var pipelineState: MTLComputePipelineState!
