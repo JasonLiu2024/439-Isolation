@@ -106,7 +106,7 @@ class ViewController: UIViewController, UIPopoverControllerDelegate
         editor.alpha = 0
         imageView.alpha = 0
 
-        UIView.animate(withDuration: 0.5, delay: 0.25, options: UIView.AnimationOptions.CurveEaseInOut, animations: {self.imageView.alpha = 1.0; self.editor.alpha = 1.0}, completion: nil)
+        UIView.animate(withDuration: 0.5, delay: 0.25, options: UIView.AnimationOptions.curveEaseInOut, animations: {self.imageView.alpha = 1.0; self.editor.alpha = 1.0}, completion: nil)
         
         editor.reactionDiffusionModel = reactionDiffusionModel
         editor.addTarget(self, action: Selector(("editorChangeHandler:")), for: UIControl.Event.valueChanged)

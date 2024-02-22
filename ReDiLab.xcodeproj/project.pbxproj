@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B1D74C352B879B96001A4C83 /* GrayScottModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D74C342B879B96001A4C83 /* GrayScottModel.swift */; };
+		B1D74C372B879E56001A4C83 /* Doer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D74C362B879E56001A4C83 /* Doer.swift */; };
 		BE1E50CA1A04367B000BD5C1 /* ReDiLab.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BE1E50C81A04367B000BD5C1 /* ReDiLab.xcdatamodeld */; };
 		BE1E50CD1A0437F8000BD5C1 /* ReactionDiffusionEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1E50CC1A0437F8000BD5C1 /* ReactionDiffusionEntity.swift */; };
 		BE1E51021A052976000BD5C1 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1E51011A052976000BD5C1 /* UIImageExtension.swift */; };
@@ -46,6 +48,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B1D74C342B879B96001A4C83 /* GrayScottModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrayScottModel.swift; sourceTree = "<group>"; };
+		B1D74C362B879E56001A4C83 /* Doer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Doer.swift; sourceTree = "<group>"; };
 		BE1E50C91A04367B000BD5C1 /* ReDiLab.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ReDiLab.xcdatamodel; sourceTree = "<group>"; };
 		BE1E50CC1A0437F8000BD5C1 /* ReactionDiffusionEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactionDiffusionEntity.swift; sourceTree = "<group>"; };
 		BE1E51011A052976000BD5C1 /* UIImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
@@ -153,6 +157,7 @@
 				BE9AA3A219F90A3E006640BF /* ReactionDiffusionImplementations.swift */,
 				BE9AA3A619F950A6006640BF /* ReactionDiffusion.swift */,
 				BED542D21A1878520092C272 /* Presets.swift */,
+				B1D74C342B879B96001A4C83 /* GrayScottModel.swift */,
 			);
 			name = reactionDiffusion;
 			sourceTree = "<group>";
@@ -186,6 +191,7 @@
 				BE97558319F8FD8A0003C748 /* async */,
 				BEB6A4F019F21FCD00C158C8 /* AppDelegate.swift */,
 				BEB6A4F219F21FCD00C158C8 /* ViewController.swift */,
+				B1D74C362B879E56001A4C83 /* Doer.swift */,
 				BEB6A4F419F21FCD00C158C8 /* Main.storyboard */,
 				BEB6A4F719F21FCD00C158C8 /* Images.xcassets */,
 				BEB6A4F919F21FCD00C158C8 /* LaunchScreen.xib */,
@@ -283,6 +289,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -344,6 +351,8 @@
 				BE9AA3A319F90A3E006640BF /* ReactionDiffusionImplementations.swift in Sources */,
 				BEB6A4F119F21FCD00C158C8 /* AppDelegate.swift in Sources */,
 				BE1E51021A052976000BD5C1 /* UIImageExtension.swift in Sources */,
+				B1D74C352B879B96001A4C83 /* GrayScottModel.swift in Sources */,
+				B1D74C372B879E56001A4C83 /* Doer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

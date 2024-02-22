@@ -14,8 +14,6 @@ using namespace metal;
 
 struct ReactionDiffusionParameters
 {
-    // Gray Scott
-    
     float F;
     float K;
     float Du;
