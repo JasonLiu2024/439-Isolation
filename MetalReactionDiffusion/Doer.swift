@@ -106,7 +106,10 @@ class Simulate: UIViewController, UIPopoverControllerDelegate{
         let commandBuffer = command_queue.makeCommandBuffer()
         let commandEncoder = commandBuffer?.makeComputeCommandEncoder()
         commandEncoder?.setComputePipelineState(pipeline_state)
-        var buffer: MTLBuffer = device.newBufferWithBytes(&reactionDiffusionModel.reactionDiffusionStruct, length: sizeof(ReactionDiffusionParameters), options: nil)!
+        var buffer: MTLBuffer = device.makeBuffer(
+            bytes: &model.parameters.values,
+            length: MemoryLayout.size(ofValue: model.parameters.values),
+            options: <#T##MTLResourceOptions#>)! // replaced newBufferWithBytes
         commandEncoder?.setBuffer(buffer, offset: 0, index: 0)
         
         command_queue = device.makeCommandQueue()
@@ -123,9 +126,7 @@ class Simulate: UIViewController, UIPopoverControllerDelegate{
                 commandEncoder?.setTexture(textureB, index: 0)
                 commandEncoder?.setTexture(textureA, index: 1)
             }
-
             commandEncoder?.dispatchThreadgroups(thread_groups, threadsPerThreadgroup: thread_group_count)
-
             use_texture_a_for_input = !use_texture_a_for_input
         }
         commandEncoder?.endEncoding()
@@ -149,27 +150,18 @@ class Simulate: UIViewController, UIPopoverControllerDelegate{
         if device == nil || !running{
             return
         }
-        
-        Async.background()
+        self.image = self.applyFilter()
+        self.image_view.image = self.image
+        if self.use_texture_a_for_input
         {
-            self.image = self.applyFilter()
-        }
-        .main
-        {
-            self.image_view.image = self.image
-
-            if self.use_texture_a_for_input
-            {
-                
-                if self.reset{
-                    self.reset = false
-                    self.setUpTexture()
-                }
+            if self.reset{
+                self.reset = false
+                self.setUpTexture()
             }
-            let fps = Int( 1 / (CFAbsoluteTimeGetCurrent() - self.runtime))
-            self.runtime = CFAbsoluteTimeGetCurrent()
-            self.run()
         }
+        let fps = Int( 1 / (CFAbsoluteTimeGetCurrent() - self.runtime))
+        self.runtime = CFAbsoluteTimeGetCurrent()
+        self.run()
     }
     
     func setUpMetal()

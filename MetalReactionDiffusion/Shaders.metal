@@ -12,17 +12,12 @@
 #include <metal_stdlib>
 using namespace metal;
 
-struct ReactionDiffusionParameters
-{
-    float F;
-    float K;
-    float Du;
-    float Dv;
-};
-
 kernel void grayScottShader(texture2d<float, access::read> inTexture [[texture(0)]],
                             texture2d<float, access::write> outTexture [[texture(1)]],
-                            constant ReactionDiffusionParameters &params [[buffer(0)]],
+                            constant float &Du [[buffer(0)]],
+                            constant float &Dv [[buffer(1)]],
+                            constant float &F [[buffer(2)]],
+                            constant float &K [[buffer(3)]],
                             uint2 gid [[thread_position_in_grid]])
 {
     const uint2 northIndex(gid.x, gid.y - 1);
@@ -41,8 +36,8 @@ kernel void grayScottShader(texture2d<float, access::read> inTexture [[texture(0
     
     const float reactionRate = thisColor.r * thisColor.g * thisColor.g;
     
-    float u = thisColor.r + (params.Du * laplacian.r) - reactionRate + params.F * (1.0f - thisColor.r);
-    float v = thisColor.g + (params.Dv * laplacian.g) + reactionRate - (params.F + params.K) * thisColor.g;
+    float u = thisColor.r + (Du * laplacian.r) - reactionRate + F * (1.0f - thisColor.r);
+    float v = thisColor.g + (Dv * laplacian.g) + reactionRate - (F + K) * thisColor.g;
 
     
     const float4 outColor(u, u, v, 1);

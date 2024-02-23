@@ -9,6 +9,8 @@
 import Foundation
 import UIKit
 
+
+
 class GrayScottModel{
     let name = "Gray-Scott Model" // displayed
     let shader = "grayScottShader" // name of Shader kernel function
